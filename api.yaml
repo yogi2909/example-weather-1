@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      -image: gcr.io/plenary-glass-376602/weather:v1
+        name: api
+        ports:
+        -containerPort: 5000
+          name: http
+        env:
+        -name: API_KEY
+          value: "7fe977285a267e0a10dfe72a905882de"
